@@ -32,24 +32,14 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-   /* @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
-        throws ResourceNotFoundException {
-        Employee employee = employeeRepository.findById(employeeId)
-                                              .orElseThrow(() -> new ResourceNotFoundException(
-                                                  "Employee not found for this id :: " + employeeId));
-        return ResponseEntity.ok().body(employee);
-    }
-   */
-
-    //get a employee from db id
+      //get a employee from db id
     @GetMapping("/employees/{id}")
     public Employee getEmployeeById(@PathVariable(value = "id") Long employeeId)
         throws ResourceNotFoundException {
-        Employee employee = employeeRepository.findById(employeeId)
+        return employeeRepository.findById(employeeId)
                                               .orElseThrow(() -> new ResourceNotFoundException(
                                                   "Employee not found for this id :: " + employeeId));
-        return employee;
+
     }
 
     @PostMapping("/employees")
